@@ -12,6 +12,17 @@ window.DOCS_MANIFEST = {
       "issue": null,
       "spec": "design.html",
       "prototipo": null
+    },
+    {
+      "projeto": "dent2dent",
+      "projetoNome": "Dent2Dent (app)",
+      "slug": "documentacao-e-micro-memoria",
+      "titulo": "Como o repositório ensina o Claude",
+      "data": "2026-11-20",
+      "nota": "Camadas da documentação, micro memória e o que fazer com os PRs 28 e 29",
+      "issue": null,
+      "spec": "design.html",
+      "prototipo": null
     }
   ]
 };
