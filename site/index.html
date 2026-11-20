@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dent2Dent Docs · Specs e protótipos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1d1f;--ink-2:#424245;--azul:#2563eb;--azul-fundo:#1d4ed8;--surface:#f5f5f7;--muted:#6e6e73;
+  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--linha:#e5e5ea;--branco:#fff;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r-sm:6px;--r-md:10px;--r-lg:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",system-ui,sans-serif;color:var(--ink-2);background:var(--branco);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+code,.mono{font-family:var(--mono)}
+a{color:var(--azul-fundo)}
+.topo{background:var(--ink);color:var(--branco)}
+.topo .in,.corpo,.rodape .in{max-width:960px;margin:0 auto}
+.barra{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid #2e2e31;max-width:960px;margin:0 auto}
+.logo{font-size:22px;font-weight:800;letter-spacing:-.03em;color:var(--branco);text-decoration:none}
+.logo b{color:var(--azul);font-weight:800}
+.nav a{color:#d2d2d7;font-size:14px;font-weight:600;text-decoration:none;padding:6px 12px;border:1px solid #3a3a3d;border-radius:var(--r-sm)}
+.nav a:hover{background:var(--azul);border-color:var(--azul);color:var(--branco)}
+.capa{padding:32px 24px 32px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8fb0ff;margin-bottom:10px}
+.capa h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:var(--branco)}
+.capa .lead{color:#c7c7cc;font-size:15px;margin-top:6px}
+.contagem{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.contagem span{font-size:12px;font-weight:600;color:#c7c7cc;border:1px solid #3a3a3d;border-radius:999px;padding:4px 12px}
+.contagem b{font-family:var(--mono);font-weight:600;color:var(--branco);margin-right:6px}
+.busca-caixa{position:relative;margin-top:24px}
+.busca{width:100%;padding:13px 44px 13px 16px;border:1px solid #3a3a3d;border-radius:var(--r-md);font:inherit;font-size:15px;color:var(--branco);background:#2a2a2d}
+.busca::placeholder{color:#8e8e93}
+.busca:focus{outline:none;border-color:var(--azul)}
+.atalho{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:12px;color:#8e8e93;border:1px solid #3a3a3d;border-radius:4px;padding:0 6px}
+.corpo{padding:8px 24px 56px}
+section{margin-top:36px}
+.sec{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--linha);padding-bottom:10px;margin-bottom:16px}
+.sec .n{font-family:var(--mono);color:var(--azul-fundo);font-size:15px;font-weight:600}
+.sec h2{font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.sec .qtd{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.doc{border:1px solid var(--linha);border-radius:var(--r-lg);background:var(--branco);display:flex;flex-direction:column;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.doc:hover{border-color:var(--azul);box-shadow:0 6px 18px rgba(37,99,235,.10)}
+.doc .cab{padding:16px 18px 14px;flex:1}
+.doc .linha1{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.doc .linha1 a{color:var(--azul-fundo);text-decoration:none}
+.doc .linha1 a:hover{text-decoration:underline}
+.novo{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--verde);background:#e6f4ed;border-radius:4px;padding:2px 6px}
+.doc .titulo{font-weight:700;color:var(--ink);font-size:17px;letter-spacing:-.01em;line-height:1.3}
+.doc .nota{color:var(--muted);font-size:14px;margin-top:6px;line-height:1.5}
+.acoes{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--linha)}
+.acao{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;font-size:13px;font-weight:600;color:var(--azul-fundo);text-decoration:none;background:var(--surface)}
+.acao+.acao{border-left:1px solid var(--linha)}
+.acao:hover{background:var(--azul);color:var(--branco)}
+.acao svg{width:16px;height:16px;flex:none}
+.acao.vazia{color:#98989d;font-weight:500;cursor:default;background:var(--branco)}
+.acao.vazia:hover{background:var(--branco);color:#98989d}
+.nada{color:var(--muted);font-size:14px}
+.vazio{border:1px dashed #c7c7cc;border-radius:var(--r-lg);background:var(--surface);padding:28px 24px}
+.vazio h2{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.vazio p{color:var(--muted);margin-top:6px;max-width:560px}
+.vazio a.cta{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:var(--branco);background:var(--azul-fundo);border-radius:var(--r-sm);padding:8px 14px;text-decoration:none}
+.vazio a.cta:hover{background:var(--azul)}
+.rodape{border-top:1px solid var(--linha);padding:18px 24px}
+.rodape .in{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.rodape .marca{font-size:15px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.rodape .marca b{color:var(--azul)}
+.rodape .nome{font-size:13px;color:var(--muted);margin-top:3px}
+.rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
+@media (max-width:600px){.capa h1{font-size:24px}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="barra">
+    <a class="logo" href="./" aria-label="Dent2Dent Docs">D<b>2</b>D</a>
+    <nav class="nav"><a href="brandbook/">Brandbook</a></nav>
+  </div>
+  <div class="capa"><div class="in">
+    <div class="eyebrow">Dent2Dent · Docs</div>
+    <h1>Specs e protótipos</h1>
+    <p class="lead">O que vai ser construído, para abrir no navegador sem clonar repositório.</p>
+    <div class="contagem" id="contagem"></div>
+    <div class="busca-caixa">
+      <input class="busca" id="busca" type="search" placeholder="Buscar por título, projeto ou issue" aria-label="Buscar documentos">
+      <span class="atalho" aria-hidden="true">/</span>
+    </div>
+  </div></div>
+</header>
+
+<main class="corpo"><div id="lista"></div></main>
+
+<footer class="rodape"><div class="in">
+  <div><div class="marca">D<b>2</b>D</div><div class="nome">Site público: só dado fictício. Atualizado em <span class="mono" id="gerado"></span>.</div></div>
+  <div class="ref">dente2dente/dent2dent-docs</div>
+</div></footer>
+
+<script src="manifest.js"></script>
+<script>
+(function(){
+  var M = window.DOCS_MANIFEST || {docs: []};
+  var MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  var ICONE = {
+    spec: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>',
+    prototipo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>'
+  };
+  function esc(s){return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function data(s){var p = String(s).split('-'); return (+p[2]) + ' ' + MESES[+p[1] - 1] + ' ' + p[0];}
+  function dias(s){var p = String(s).split('-'); return (Date.now() - new Date(+p[0], +p[1] - 1, +p[2])) / 864e5;}
+  function plural(n, um, varios){return '<span><b>' + n + '</b>' + (n === 1 ? um : varios) + '</span>';}
+
+  var docs = M.docs.slice().sort(function(a, b){return a.data < b.data ? 1 : -1;});
+  document.getElementById('gerado').textContent = M.generated ? data(M.generated) : '';
+
+  var projetos = {};
+  docs.forEach(function(d){projetos[d.projeto] = d.projetoNome || d.projeto;});
+  document.getElementById('contagem').innerHTML =
+    plural(Object.keys(projetos).length, 'projeto', 'projetos') +
+    plural(docs.filter(function(d){return d.spec;}).length, 'spec', 'specs') +
+    plural(docs.filter(function(d){return d.prototipo;}).length, 'protótipo', 'protótipos');
+
+  function acao(d, arquivo, rotulo){
+    if (!d[arquivo]) return '<span class="acao vazia" title="Ainda não publicado">' + ICONE[arquivo] + rotulo + ' em escrita</span>';
+    return '<a class="acao" href="' + esc(d.projeto + '/' + d.slug + '/' + d[arquivo]) + '">' + ICONE[arquivo] + rotulo + '</a>';
+  }
+
+  function cartao(d){
+    var issue = d.issue ? ' · <a href="' + esc(d.issue.url) + '">#' + d.issue.numero + '</a>' : '';
+    var novo = dias(d.data) < 7 ? '<span class="novo">Novo</span>' : '';
+    return '<article class="doc"><div class="cab">' +
+      '<div class="linha1"><span>' + data(d.data) + issue + '</span>' + novo + '</div>' +
+      '<div class="titulo">' + esc(d.titulo) + '</div>' +
+      (d.nota ? '<div class="nota">' + esc(d.nota) + '</div>' : '') +
+      '</div><div class="acoes">' + acao(d, 'spec', 'Spec') + acao(d, 'prototipo', 'Protótipo') + '</div></article>';
+  }
+
+  var VAZIO = '<section><div class="vazio"><h2>Nenhum documento publicado ainda</h2>' +
+    '<p>Quando uma spec ou um protótipo da Dent2Dent for publicado, ele aparece aqui. Enquanto isso, o brandbook já está no ar.</p>' +
+    '<a class="cta" href="brandbook/">Abrir o brandbook</a></div></section>';
+
+  function render(filtro){
+    if (!docs.length){document.getElementById('lista').innerHTML = VAZIO; return;}
+    var f = (filtro || '').toLowerCase();
+    var visiveis = docs.filter(function(d){
+      var issue = d.issue ? '#' + d.issue.numero : '';
+      return !f || [d.titulo, d.nota, d.projeto, d.projetoNome, d.slug, issue].join(' ').toLowerCase().indexOf(f) >= 0;
+    });
+    var ordem = [];
+    visiveis.forEach(function(d){if (ordem.indexOf(d.projeto) < 0) ordem.push(d.projeto);});
+    document.getElementById('lista').innerHTML = ordem.length ? ordem.map(function(p, i){
+      var doProjeto = visiveis.filter(function(d){return d.projeto === p;});
+      return '<section><div class="sec"><span class="n">' + ('0' + (i + 1)).slice(-2) + '</span><h2>' + esc(projetos[p]) + '</h2>' +
+        '<span class="qtd">' + doProjeto.length + (doProjeto.length === 1 ? ' documento' : ' documentos') + '</span></div>' +
+        '<div class="grade">' + doProjeto.map(cartao).join('') + '</div></section>';
+    }).join('') : '<section><p class="nada">Nada encontrado para essa busca.</p></section>';
+  }
+
+  var busca = document.getElementById('busca');
+  busca.addEventListener('input', function(e){render(e.target.value);});
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== busca){e.preventDefault(); busca.focus();}
+    if (e.key === 'Escape' && document.activeElement === busca){busca.value = ''; render('');}
+  });
+  render('');
+})();
+</script>
+</body>
+</html>
