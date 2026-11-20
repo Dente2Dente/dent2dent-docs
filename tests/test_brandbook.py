@@ -62,9 +62,38 @@ class BrandbookTest(unittest.TestCase):
     def test_links_internos_do_brandbook_resolvem(self):
         txt = (BRANDBOOK / "index.html").read_text(encoding="utf-8")
         for href in re.findall(r'href="([^":#]+)"', txt):
-            if href.startswith(("../", "esqueletos/")):
+            if href.startswith("../"):
                 continue
             self.assertTrue((BRANDBOOK / href).exists(), href)
+
+
+class EsqueletosTest(unittest.TestCase):
+    def ler(self, nome):
+        return (BRANDBOOK / "esqueletos" / nome).read_text(encoding="utf-8")
+
+    def test_os_dois_esqueletos_existem(self):
+        for nome in ("spec-esqueleto.html", "roteiro-esqueleto.html"):
+            self.assertTrue((BRANDBOOK / "esqueletos" / nome).is_file(), nome)
+
+    def test_campos_de_conteudo_preservados(self):
+        spec = self.ler("spec-esqueleto.html")
+        for campo in ("TITULO", "EPIC_OU_FEATURE", "NUMERO", "LEAD", "REPO", "N_FEATURES",
+                      "N_PBIS", "N_TASKS", "HORAS", "DATA", "VEREDITO", "SECAO", "CONTEUDO"):
+            self.assertIn("{{" + campo + "}}", spec, campo)
+        roteiro = self.ler("roteiro-esqueleto.html")
+        for campo in ("TITULO", "PRODUTO", "O_QUE_ESTA_SENDO_HOMOLOGADO", "ONDE_ACESSAR_E_COM_QUAL_USUARIO",
+                      "FEATURE", "OBJETIVO_EM_LINGUAGEM_DE_NEGOCIO", "NOME_DO_CASO", "PASSO",
+                      "CRITERIO_OBSERVAVEL", "NUMERO", "DATA"):
+            self.assertIn("{{" + campo + "}}", roteiro, campo)
+
+    def test_rodape_com_logo_d2d(self):
+        for nome in ("spec-esqueleto.html", "roteiro-esqueleto.html"):
+            self.assertIn('<div class="marca">D<b>2</b>D</div>', self.ler(nome), nome)
+
+    def test_faixa_do_topo_e_azul_liso(self):
+        for nome in ("spec-esqueleto.html", "roteiro-esqueleto.html"):
+            self.assertIn(".faixa{height:5px;background:var(--azul)}", self.ler(nome), nome)
+            self.assertNotIn("gradient", self.ler(nome), nome)
 
 
 if __name__ == "__main__":
