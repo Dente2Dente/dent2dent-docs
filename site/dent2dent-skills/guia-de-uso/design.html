@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia do plugin dent2dent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1d1f;--ink-2:#424245;--azul:#2563eb;--azul-fundo:#1d4ed8;--surface:#f5f5f7;--muted:#6e6e73;
+  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--hair:rgba(0,0,0,.08);--hair-strong:rgba(0,0,0,.14);--branco:#fff;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:20px;--r-xl:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:"Inter",system-ui,sans-serif;color:var(--ink-2);background:var(--branco);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+code,.mono{font-family:var(--mono)}
+a{color:var(--azul-fundo)}
+.faixa{height:5px;background:var(--azul)}
+.capa{background:var(--ink);color:var(--branco);padding:56px 24px 44px}
+.capa .in,.corpo,.rodape .in{max-width:880px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:16px;padding-left:12px;border-left:3px solid var(--azul)}
+.capa h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.12}
+.capa .lead{color:rgba(255,255,255,.78);font-weight:400;font-size:17px;margin-top:14px;max-width:720px}
+.capa-meta{display:flex;flex-wrap:wrap;gap:16px 40px;margin-top:32px;border-top:1px solid rgba(255,255,255,.16);padding-top:18px}
+.capa-meta .rot{color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;margin-bottom:4px}
+.capa-meta .val{font-weight:600;font-size:14px}
+.capa-meta a{color:var(--branco)}
+.corpo{padding:8px 24px 64px}
+section{margin-top:44px}
+.sec{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:18px}
+.sec .n{font-family:var(--mono);color:var(--azul-fundo);font-size:15px;font-weight:600}
+.sec h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+h3{font-size:16px;font-weight:700;margin:22px 0 8px;color:var(--ink)}
+p{margin-bottom:12px}
+ul,ol{margin:0 0 12px 22px}
+li{margin-bottom:4px}
+.veredito{border-left:3px solid var(--azul);background:var(--surface);padding:16px 18px;margin-top:32px;border-radius:0 var(--r-md) var(--r-md) 0}
+.veredito .rot,.caixa .rot{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-fundo);margin-bottom:8px}
+.veredito p:last-child,.caixa p:last-child{margin-bottom:0}
+.caixa{border:1px solid var(--hair);border-radius:var(--r-lg);padding:16px 18px;margin:16px 0;background:var(--branco)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.kpi{border:1px solid var(--hair);border-radius:var(--r-lg);padding:14px;background:var(--surface)}
+.kpi .v{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--azul-fundo)}
+.kpi .t{font-weight:700;font-size:14px;margin:6px 0 4px;color:var(--ink)}
+.kpi .x{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:14px}
+th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--hair-strong);padding:8px 10px}
+td{border-bottom:1px solid var(--hair);padding:9px 10px;vertical-align:top}
+td.num,th.num{text-align:right;font-family:var(--mono)}
+td .id{font-family:var(--mono);color:var(--azul-fundo)}
+tr.feature td{background:var(--surface);font-weight:700}
+pre{font-family:var(--mono);font-size:13px;background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-md);padding:14px;overflow-x:auto;margin:12px 0 16px;line-height:1.5}
+code{font-size:.9em;background:var(--surface);border-radius:var(--r-xs);padding:1px 4px}
+pre code{background:none;padding:0}
+.fluxo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.fluxo .no{border:1px solid var(--hair);border-radius:var(--r-md);padding:8px 12px;background:var(--surface);font-size:13px;font-weight:600}
+.fluxo .seta{color:var(--muted);font-family:var(--mono)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:var(--r-xs);background:var(--hair);color:var(--ink-2)}
+.rodape{border-top:1px solid var(--hair);padding:18px 24px}
+.rodape .in{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.rodape .marca{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--ink)}
+.rodape .marca b{color:var(--azul);font-weight:inherit}
+.rodape .doc{font-size:14px;font-weight:600;margin-top:3px;color:var(--ink-2)}
+.rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
+@page{margin:12mm}
+@media print{
+  body{font-size:12px}
+  .capa{padding:28px 20px}
+  table,pre,.kpi,.caixa{break-inside:avoid}
+  h2,h3,.sec{break-after:avoid}
+}
+@media (max-width:600px){.capa h1{font-size:26px}.sec h2{font-size:19px}}
+.diagrama{margin:16px 0 8px;border:1px solid var(--hair);border-radius:var(--r-lg);padding:14px;background:var(--branco)}
+.diagrama svg{width:100%;height:auto;display:block}
+.d-no{fill:var(--surface);stroke:var(--hair-strong);stroke-width:1}
+.d-no.foco{fill:var(--azul);stroke:var(--azul)}
+.d-txt{font:700 14px Inter,system-ui,sans-serif;fill:var(--ink);text-anchor:middle}
+.d-txt.mono{font-family:var(--mono);font-size:13px}
+.d-sub{font:400 12px Inter,system-ui,sans-serif;fill:var(--muted);text-anchor:middle}
+.branco{fill:var(--branco)}
+.d-seta{stroke:var(--muted);stroke-width:1.4}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grade .caixa{margin:0}
+.caixa .rot{color:var(--azul-fundo)}
+@media print{section{break-inside:auto}.diagrama,.fluxo,.grade{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="faixa"></div>
+<header class="capa"><div class="in">
+  <div class="eyebrow">Guia de uso · plugin dent2dent</div>
+  <h1>Como trabalhar com rito no Claude Code</h1>
+  <p class="lead">O que cada skill faz, qual chamar em cada situação e como usar no repositório da Dent2Dent, com homologação na develop e produção na main.</p>
+  <div class="capa-meta">
+    <div><div class="rot">Para</div><div class="val">Diogo</div></div>
+    <div><div class="rot">Plugin</div><div class="val mono">dent2dent 0.5.0</div></div>
+    <div><div class="rot">Marketplace</div><div class="val mono">Dente2Dente/dent2dent-skills</div></div>
+    <div><div class="rot">Repositório</div><div class="val mono">Diogo-Salvio/dent2dent</div></div>
+    <div><div class="rot">Data</div><div class="val mono">20/11/2026</div></div>
+  </div>
+</div></header>
+
+<main class="corpo">
+  <div class="veredito">
+    <div class="rot">O que você precisa fazer</div>
+    <p>Instale o plugin, abra o Claude Code na pasta do <code>dent2dent</code> e comece toda mudança pequena com <code>/dent2dent:fase-dinamica</code>. Ele planeja, abre a issue, implementa com teste, passa por um auditor e só publica depois que você responder <b>"Mergeio?"</b>. No primeiro prompt, diga que a base é a <code>develop</code>.</p>
+  </div>
+
+  <section>
+    <div class="sec"><span class="n">01</span><h2>Por que usar</h2></div>
+    <p>Sem rito, o Claude implementa o que entendeu, no chat em que está, e o contexto some quando o chat compacta ou fecha. O plugin muda três coisas:</p>
+    <div class="kpis">
+      <div class="kpi"><div class="v">plano</div><div class="t">Antes de codar</div><div class="x">Nada nasce no GitHub sem você aprovar o plano. O plano vira a régua do auditor.</div></div>
+      <div class="kpi"><div class="v">issue</div><div class="t">Estado no GitHub</div><div class="x">Cada etapa grava um comentário na issue. Chat novo ou compactado retoma de onde parou.</div></div>
+      <div class="kpi"><div class="v">auditor</div><div class="t">Olho de fora</div><div class="x">Um agente de contexto limpo compara o que foi feito com o plano e aponta o que fugiu.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">02</span><h2>Instalar, uma vez</h2></div>
+    <ol>
+      <li>Aceite o convite da org <b>Dente2Dente</b> no GitHub (o repositório do plugin é privado).</li>
+      <li>No terminal, com <code>gh</code>, <code>git</code> e <code>python3</code> instalados:
+<pre><code>gh auth login
+gh auth setup-git</code></pre></li>
+      <li>Dentro do Claude Code:
+<pre><code>/plugin marketplace add Dente2Dente/dent2dent-skills
+/plugin install dent2dent@dent2dent-skills</code></pre></li>
+      <li>Reinicie o Claude Code. Digite <code>/dent2dent:</code> e confira que aparecem as cinco skills.</li>
+    </ol>
+    <p>Quando o Hugo publicar melhoria no núcleo, você atualiza com <code>/plugin marketplace update dent2dent-skills</code> e reinicia.</p>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">03</span><h2>Qual skill chamar</h2></div>
+    <figure class="diagrama">
+      <svg viewBox="0 0 860 300" role="img" aria-label="Escolha da skill pelo tamanho do trabalho">
+        <defs><marker id="s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6e6e73"/></marker></defs>
+        <rect x="10" y="118" width="150" height="64" rx="14" class="d-no"/>
+        <text x="85" y="146" class="d-txt">Você tem</text><text x="85" y="166" class="d-txt">uma tarefa</text>
+        <line x1="160" y1="140" x2="250" y2="52" class="d-seta" marker-end="url(#s)"/>
+        <line x1="160" y1="150" x2="250" y2="150" class="d-seta" marker-end="url(#s)"/>
+        <line x1="160" y1="160" x2="250" y2="248" class="d-seta" marker-end="url(#s)"/>
+        <text x="196" y="80" class="d-sub">ideia crua</text>
+        <text x="205" y="142" class="d-sub">até 5 passos</text>
+        <text x="194" y="226" class="d-sub">várias entregas</text>
+        <rect x="252" y="22" width="210" height="60" rx="14" class="d-no"/>
+        <text x="357" y="48" class="d-txt mono">explorar</text><text x="357" y="68" class="d-sub">debate e fecha com a ata</text>
+        <rect x="252" y="120" width="210" height="60" rx="14" class="d-no foco"/>
+        <text x="357" y="146" class="d-txt mono branco">fase-dinamica</text><text x="357" y="166" class="d-sub branco">plano ao merge, num chat</text>
+        <rect x="252" y="218" width="150" height="60" rx="14" class="d-no"/>
+        <text x="327" y="244" class="d-txt mono">fase1-planejar</text><text x="327" y="264" class="d-sub">plano e árvore</text>
+        <rect x="452" y="218" width="150" height="60" rx="14" class="d-no"/>
+        <text x="527" y="244" class="d-txt mono">fase2-executar</text><text x="527" y="264" class="d-sub">executa o Epic</text>
+        <rect x="652" y="218" width="150" height="60" rx="14" class="d-no"/>
+        <text x="727" y="244" class="d-txt mono">fase3-polir</text><text x="727" y="264" class="d-sub">acabamento na tela</text>
+        <line x1="402" y1="248" x2="450" y2="248" class="d-seta" marker-end="url(#s)"/>
+        <line x1="602" y1="248" x2="650" y2="248" class="d-seta" marker-end="url(#s)"/>
+        <path d="M462 52 C 560 52, 560 140, 466 146" class="d-seta" marker-end="url(#s)" fill="none"/>
+        <path d="M462 58 C 620 70, 640 200, 340 216" class="d-seta" marker-end="url(#s)" fill="none"/>
+        <text x="600" y="110" class="d-sub">a ata recomenda uma das duas</text>
+      </svg>
+    </figure>
+    <table>
+      <tr><th>Skill</th><th>Quando</th><th>O que sai</th></tr>
+      <tr><td><code>/dent2dent:fase-dinamica</code></td><td>Ajuste, correção ou melhoria de até 5 passos, um assunto só</td><td>Issue com o plano, branch, commits com teste, PR e merge</td></tr>
+      <tr><td><code>/dent2dent:explorar</code></td><td>"E se a gente...", dúvida entre caminhos, medir se algo funciona</td><td>A ata da discussão, que já chama a fase certa no mesmo chat</td></tr>
+      <tr><td><code>/dent2dent:fase1-planejar</code></td><td>Módulo novo, várias telas, mais de um assunto</td><td>Plano, árvore Epic, Feature, PBI e Task em issues, spec no site de docs</td></tr>
+      <tr><td><code>/dent2dent:fase2-executar</code></td><td>Depois da fase1, num chat novo pelo botão que ela oferece</td><td>Uma Task por agente, auditor por PBI, PR por Feature, um "Mergeio?" no fim</td></tr>
+      <tr><td><code>/dent2dent:fase3-polir</code></td><td>Depois da fase2, com você olhando a tela no localhost</td><td>Ajustes em lotes, regra nova gravada no repo, Epic fechado</td></tr>
+    </table>
+    <p><b>Na dúvida, fase-dinamica.</b> Se o plano passar de 5 passos, ela mesma recomenda a fase1 e pergunta se segue.</p>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">04</span><h2>Como a fase-dinamica anda</h2></div>
+    <div class="fluxo">
+      <span class="no">plano no chat</span><span class="seta">→</span>
+      <span class="no">issue no GitHub</span><span class="seta">→</span>
+      <span class="no">branch e worktree</span><span class="seta">→</span>
+      <span class="no">teste, código, commit</span><span class="seta">→</span>
+      <span class="no">auditor</span><span class="seta">→</span>
+      <span class="no">polir (opcional)</span><span class="seta">→</span>
+      <span class="no">PR e "Mergeio?"</span>
+    </div>
+    <p>Você só responde em três pontos. O resto anda sozinho e é anunciado em uma linha.</p>
+    <table>
+      <tr><th>Pergunta</th><th>O que decidir</th></tr>
+      <tr><td><b>"Fecho o plano?"</b></td><td>Se os passos, os arquivos e o critério de pronto estão certos. Corrija aqui: é barato. Depois disso o plano vira o corpo da issue.</td></tr>
+      <tr><td><b>"Polir antes do PR?"</b></td><td>O auditor sugere melhorias. Sim, para fazer agora; não, para ir direto ao PR.</td></tr>
+      <tr><td><b>"Mergeio?"</b></td><td>O merge publica. Confira o PR e responda sim só quando quiser no ar.</td></tr>
+    </table>
+    <h3>Frases que funcionam</h3>
+<pre><code>/dent2dent:fase-dinamica O filtro de recebimentos não respeita a data final.
+Base develop, PR para develop.
+
+/dent2dent:explorar Quero repensar como a esteira de recebimentos avisa o atraso.
+
+/dent2dent:fase1-planejar Módulo de agenda de entregas para os laboratórios.</code></pre>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">05</span><h2>No repositório da Dent2Dent</h2></div>
+    <p>Hoje o seu fluxo é <code>feat/*</code> para a <code>develop</code> (homologação, Vercel e migrations do Supabase de HML) e depois a <code>develop</code> para a <code>main</code> (produção, com as migrations de PROD rodando no push).</p>
+    <div class="caixa">
+      <div class="rot">Atenção: base develop</div>
+      <p>As skills nasceram num projeto em que a <code>main</code> é o tronco. Sem aviso, elas abrem a branch da <code>main</code> e o PR para a <code>main</code>, o que pularia a homologação e rodaria migration direto em produção. Até o plugin aprender a ler o tronco do repo, escreva no primeiro prompt: <code>Base develop, PR para develop. Main só depois de homologar.</code></p>
+    </div>
+    <div class="grade">
+      <div class="caixa">
+        <div class="rot">Migrations</div>
+        <p>O seu <code>AGENTS.md</code> já diz que migration aplicada é imutável e que toda mudança de banco é migration nova. As skills leem esse arquivo antes de planejar e param antes de qualquer migration contra produção.</p>
+      </div>
+      <div class="caixa">
+        <div class="rot">Testes</div>
+        <p>O teste do passo roda com <code>npm test</code> (vitest), primeiro falhando e depois passando. Banco de teste é sempre o local, nunca o do <code>.env</code>.</p>
+      </div>
+    </div>
+    <p style="margin-top:14px"><b>Promover para produção</b> continua com você: quando a <code>develop</code> estiver homologada, abra o PR de <code>develop</code> para <code>main</code> como já faz, ou peça ao Claude para abrir e conferir antes do seu ok.</p>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">06</span><h2>Onde as coisas ficam</h2></div>
+    <table>
+      <tr><th>O quê</th><th>Onde</th></tr>
+      <tr><td>Plano e estado de cada tarefa</td><td>Na issue do repo: o corpo é o plano, e os comentários <code>PIPELINE v1</code> são o estado. É por eles que um chat novo retoma.</td></tr>
+      <tr><td>Spec e protótipo de trabalho grande</td><td>Site de docs <code>dente2dente.github.io/dent2dent-docs</code>, publicado pela fase1. O site é público: só dado fictício.</td></tr>
+      <tr><td>Brandbook</td><td><code>dente2dente.github.io/dent2dent-docs/brandbook/</code>, com os tokens do site no ar. Documento e protótipo saem nessa marca.</td></tr>
+      <tr><td>As skills em si</td><td>Repo <code>Dente2Dente/dent2dent-skills</code>. O núcleo é gerado a partir do repo do Hugo: não edite lá.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">07</span><h2>Erros comuns</h2></div>
+    <ul>
+      <li><b>Pedir para "só fazer rapidinho".</b> O plano de um ajuste cabe em 5 linhas e é ele que o auditor usa. Sem plano, a auditoria vira opinião.</li>
+      <li><b>Responder "sim" no "Mergeio?" sem abrir o PR.</b> O merge publica.</li>
+      <li><b>Abrir chat novo e recolar contexto.</b> Não precisa: chame a mesma skill no chat novo e ela acha a issue pelo nome da branch.</li>
+      <li><b>Esquecer a base develop</b> no primeiro prompt (seção 05).</li>
+      <li><b>Pôr dado real no site de docs.</b> Ele é público e não tem login.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">08</span><h2>Quando travar</h2></div>
+    <p>Skill que errou de comportamento ou pediu algo estranho: mande para o Hugo o print e o link da issue. A correção entra no núcleo, desce para o seu marketplace no próximo sync e você atualiza com <code>/plugin marketplace update dent2dent-skills</code>.</p>
+  </section>
+</main>
+
+<footer class="rodape"><div class="in">
+  <div><div class="marca">Dent<b>2</b>Dent</div><div class="doc">Guia de uso do plugin dent2dent</div></div>
+  <div class="ref">dent2dent 0.5.0 · 20/11/2026</div>
+</div></footer>
+</body></html>

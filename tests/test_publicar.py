@@ -26,8 +26,8 @@ class PublicarTest(unittest.TestCase):
         base = Path(self.tmp.name)
         self.site = base / "site"
         self.site.mkdir()
-        manifest_real = (RAIZ / "site" / "manifest.js").read_text(encoding="utf-8")
-        (self.site / "manifest.js").write_text(manifest_real, encoding="utf-8")
+        (self.site / "manifest.js").write_text(
+            'window.DOCS_MANIFEST = {"generated": "2026-11-20", "docs": []};\n', encoding="utf-8")
         self.spec = base / "spec.html"
         self.spec.write_text(SPEC, encoding="utf-8")
         self.proto = base / "proto.html"
@@ -51,10 +51,10 @@ class PublicarTest(unittest.TestCase):
     def manifest(self):
         return publicar.ler_manifest()
 
-    def test_manifest_do_repo_comeca_sem_documentos(self):
+    def test_manifest_do_repo_e_json_valido(self):
         real = (RAIZ / "site" / "manifest.js").read_text(encoding="utf-8")
         txt = real[real.index("{"): real.rindex("}") + 1]
-        self.assertEqual(json.loads(txt)["docs"], [])
+        self.assertIsInstance(json.loads(txt)["docs"], list)
 
     def test_grava_design_e_entrada_no_manifest(self):
         self.rodar("--projeto", "app", "--projeto-nome", "App", "--slug", "agenda",
@@ -122,8 +122,9 @@ class PublicarTest(unittest.TestCase):
             self.rodar("--projeto", "app", "--slug", "agenda", "--spec", str(self.spec))
 
     def test_nao_deixa_projeto_de_exemplo_no_site_real(self):
-        self.assertEqual([p.name for p in (RAIZ / "site").iterdir() if p.is_dir()
-                          and p.name not in {"brandbook"}], [])
+        self.rodar("--projeto", "app", "--slug", "agenda", "--titulo", "Agenda", "--spec", str(self.spec))
+        self.assertFalse((RAIZ / "site" / "app").exists())
+        self.assertNotIn('"projeto": "app"', (RAIZ / "site" / "manifest.js").read_text(encoding="utf-8"))
 
     def test_script_roda_pela_linha_de_comando(self):
         r = subprocess.run([sys.executable, str(RAIZ / "scripts" / "publicar.py"), "--help"],
