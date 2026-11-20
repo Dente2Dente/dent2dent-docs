@@ -11,9 +11,9 @@
 <style>
 :root{
   --ink:#1d1d1f;--ink-2:#424245;--azul:#2563eb;--azul-fundo:#1d4ed8;--surface:#f5f5f7;--muted:#6e6e73;
-  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--linha:#e5e5ea;--branco:#fff;
+  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--hair:rgba(0,0,0,.08);--hair-strong:rgba(0,0,0,.14);--branco:#fff;
   --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
-  --r-sm:6px;--r-md:10px;--r-lg:16px;
+  --r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:20px;--r-xl:28px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -27,12 +27,12 @@ a{color:var(--azul-fundo)}
 .capa h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.12}
 .capa .lead{color:rgba(255,255,255,.78);font-weight:400;font-size:17px;margin-top:14px;max-width:720px}
 .capa-meta{display:flex;flex-wrap:wrap;gap:16px 40px;margin-top:32px;border-top:1px solid rgba(255,255,255,.16);padding-top:18px}
-.capa-meta .rot{color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;margin-bottom:4px}
+.capa-meta .rot{color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;margin-bottom:4px}
 .capa-meta .val{font-weight:600;font-size:14px}
 .capa-meta a{color:var(--branco)}
 .corpo{padding:8px 24px 64px}
 section{margin-top:44px}
-.sec{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--linha);padding-bottom:10px;margin-bottom:18px}
+.sec{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:18px}
 .sec .n{font-family:var(--mono);color:var(--azul-fundo);font-size:15px;font-weight:600}
 .sec h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
 h3{font-size:16px;font-weight:700;margin:22px 0 8px;color:var(--ink)}
@@ -42,29 +42,29 @@ li{margin-bottom:4px}
 .veredito{border-left:3px solid var(--azul);background:var(--surface);padding:16px 18px;margin-top:32px;border-radius:0 var(--r-md) var(--r-md) 0}
 .veredito .rot,.caixa .rot{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-fundo);margin-bottom:8px}
 .veredito p:last-child,.caixa p:last-child{margin-bottom:0}
-.caixa{border:1px solid var(--linha);border-radius:var(--r-lg);padding:16px 18px;margin:16px 0;background:var(--branco)}
+.caixa{border:1px solid var(--hair);border-radius:var(--r-lg);padding:16px 18px;margin:16px 0;background:var(--branco)}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
-.kpi{border:1px solid var(--linha);border-radius:var(--r-lg);padding:14px;background:var(--surface)}
+.kpi{border:1px solid var(--hair);border-radius:var(--r-lg);padding:14px;background:var(--surface)}
 .kpi .v{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--azul-fundo)}
 .kpi .t{font-weight:700;font-size:14px;margin:6px 0 4px;color:var(--ink)}
 .kpi .x{font-size:13px;color:var(--muted)}
 table{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:14px}
-th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--linha);padding:8px 10px}
-td{border-bottom:1px solid var(--linha);padding:9px 10px;vertical-align:top}
+th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--hair-strong);padding:8px 10px}
+td{border-bottom:1px solid var(--hair);padding:9px 10px;vertical-align:top}
 td.num,th.num{text-align:right;font-family:var(--mono)}
 td .id{font-family:var(--mono);color:var(--azul-fundo)}
 tr.feature td{background:var(--surface);font-weight:700}
-pre{font-family:var(--mono);font-size:13px;background:var(--surface);border:1px solid var(--linha);border-radius:var(--r-md);padding:14px;overflow-x:auto;margin:12px 0 16px;line-height:1.5}
-code{font-size:.9em;background:var(--surface);border-radius:var(--r-sm);padding:1px 4px}
+pre{font-family:var(--mono);font-size:13px;background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-md);padding:14px;overflow-x:auto;margin:12px 0 16px;line-height:1.5}
+code{font-size:.9em;background:var(--surface);border-radius:var(--r-xs);padding:1px 4px}
 pre code{background:none;padding:0}
 .fluxo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
-.fluxo .no{border:1px solid var(--linha);border-radius:var(--r-md);padding:8px 12px;background:var(--surface);font-size:13px;font-weight:600}
+.fluxo .no{border:1px solid var(--hair);border-radius:var(--r-md);padding:8px 12px;background:var(--surface);font-size:13px;font-weight:600}
 .fluxo .seta{color:var(--muted);font-family:var(--mono)}
-.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:var(--r-sm);background:var(--linha);color:var(--ink-2)}
-.rodape{border-top:1px solid var(--linha);padding:18px 24px}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:var(--r-xs);background:var(--hair);color:var(--ink-2)}
+.rodape{border-top:1px solid var(--hair);padding:18px 24px}
 .rodape .in{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.rodape .marca{font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
-.rodape .marca b{color:var(--azul);font-weight:800}
+.rodape .marca{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--ink)}
+.rodape .marca b{color:var(--azul);font-weight:inherit}
 .rodape .doc{font-size:14px;font-weight:600;margin-top:3px;color:var(--ink-2)}
 .rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
 @page{margin:12mm}
@@ -105,7 +105,7 @@ pre code{background:none;padding:0}
 </main>
 
 <footer class="rodape"><div class="in">
-  <div><div class="marca">D<b>2</b>D</div><div class="doc">{{TITULO}} · Spec técnica</div></div>
+  <div><div class="marca">Dent<b>2</b>Dent</div><div class="doc">{{TITULO}} · Spec técnica</div></div>
   <div class="ref">{{EPIC_OU_FEATURE}} #{{NUMERO}} · {{DATA}}</div>
 </div></footer>
 </body>

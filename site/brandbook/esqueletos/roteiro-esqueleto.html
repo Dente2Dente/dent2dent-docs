@@ -11,10 +11,10 @@
 <style>
 :root{
   --ink:#1d1d1f;--ink-2:#424245;--azul:#2563eb;--azul-fundo:#1d4ed8;--surface:#f5f5f7;--muted:#6e6e73;
-  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--linha:#e5e5ea;--branco:#fff;
+  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--hair:rgba(0,0,0,.08);--hair-strong:rgba(0,0,0,.14);--branco:#fff;
   --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
-  --r-sm:6px;--r-md:10px;--r-lg:16px;
-  --verde-bg:rgba(31,138,91,.09);
+  --r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:20px;--r-xl:28px;
+  --verde-tint:rgba(31,138,91,.08);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -27,26 +27,26 @@ body{font-family:"Inter",system-ui,sans-serif;color:var(--ink-2);background:var(
 .capa .lead{color:rgba(255,255,255,.78);font-size:16px;margin-top:12px;max-width:640px}
 .corpo{padding:8px 24px 56px}
 .aceite{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
-.aceite>div{border:1px solid var(--linha);border-radius:var(--r-lg);padding:14px 16px}
+.aceite>div{border:1px solid var(--hair);border-radius:var(--r-lg);padding:14px 16px}
 .aceite .rot{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .aceite .linha{border-bottom:1px solid var(--muted);height:30px}
 .como{background:var(--surface);border-left:3px solid var(--azul);padding:14px 18px;margin-top:24px;border-radius:0 var(--r-md) var(--r-md) 0}
 .como p+p{margin-top:6px}
 h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin:40px 0 4px}
 .objetivo{color:var(--muted);margin-bottom:16px}
-.caso{border:1px solid var(--linha);border-radius:var(--r-lg);padding:18px 20px;margin:14px 0;break-inside:avoid}
+.caso{border:1px solid var(--hair);border-radius:var(--r-lg);padding:18px 20px;margin:14px 0;break-inside:avoid}
 .caso h3{font-size:16px;font-weight:700;color:var(--ink);display:flex;gap:10px;align-items:baseline}
 .caso h3 .n{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--azul-fundo)}
 .caso ol{margin:12px 0 0 22px}
 .caso li{margin-bottom:6px}
-.certo{background:var(--verde-bg);border-radius:var(--r-md);padding:10px 14px;margin-top:14px}
-.certo b{color:var(--verde);font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:2px}
+.certo{background:var(--verde-tint);border-left:3px solid var(--verde);border-radius:0 var(--r-md) var(--r-md) 0;padding:10px 14px;margin-top:14px}
+.certo b{color:var(--ink-2);font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:2px}
 .marcar{display:flex;gap:22px;margin-top:12px;font-size:13px;color:var(--muted)}
-.marcar span::before{content:"";display:inline-block;width:12px;height:12px;border:1.5px solid var(--muted);border-radius:3px;margin-right:6px;vertical-align:-2px}
-.rodape{border-top:1px solid var(--linha);padding:18px 24px}
+.marcar span::before{content:"";display:inline-block;width:12px;height:12px;border:1.5px solid var(--muted);border-radius:var(--r-xs);margin-right:6px;vertical-align:-2px}
+.rodape{border-top:1px solid var(--hair);padding:18px 24px}
 .rodape .in{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.rodape .marca{font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
-.rodape .marca b{color:var(--azul);font-weight:800}
+.rodape .marca{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--ink)}
+.rodape .marca b{color:var(--azul);font-weight:inherit}
 .rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
 @page{margin:12mm}
 @media print{body{font-size:12px}.capa{padding:24px 20px}h2{break-after:avoid}}
@@ -86,7 +86,7 @@ h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin:
 </main>
 
 <footer class="rodape"><div class="in">
-  <div class="marca">D<b>2</b>D</div>
+  <div class="marca">Dent<b>2</b>Dent</div>
   <div class="ref">{{TITULO}} · Epic #{{NUMERO}} · {{DATA}}</div>
 </div></footer>
 </body>
