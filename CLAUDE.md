@@ -19,8 +19,8 @@ python3 scripts/publicar.py --projeto <kebab> --projeto-nome "<Nome>" --slug <ke
 git add site && git commit -m "Publica <slug> de <projeto>" && git push
 ```
 
-- **O push na `main` publica.** O workflow `pages.yml` confere travessão na home e no manifest e
-  sobe `site/` pelo `actions/deploy-pages`, sem segredo. Acompanhe com `gh run watch`.
+- **O push na `main` publica.** O workflow `pages.yml` confere travessão em todo `site/**/*.html` e no manifest, roda a suíte
+  (`unittest discover`) e sobe `site/` pelo `actions/deploy-pages`, sem segredo. Acompanhe com `gh run watch`.
 - **`site/manifest.js` é a fonte da home.** Arquivo em `site/` sem entrada no manifest vai ao ar e
   fica invisível. Não editar `index.html` para listar documento.
 - **Estrutura fixa:** `site/<projeto>/<slug>/design.html` e `prototipo.html`. Rodar de novo com só
@@ -45,11 +45,23 @@ O teste do `publicar.py` roda numa cópia temporária e não deixa projeto de ex
 
 ## Marca
 
-Dent2Dent, não HyperionTech: Inter e mono do sistema, ink `#1d1d1f`, azul `#2563eb` e
-`#1d4ed8`, surface `#f5f5f7`. Logotipo em texto "D2D" com o "2" em azul. Os tokens vivem no
-`:root` do `site/index.html`.
+**O site no ar, dent2dent.com.br, vence qualquer documento.** A fonte dos tokens é
+`site/brandbook/index.html`, e o `tests/test_brandbook.py` trava o que ele afirma. Mudou o site,
+muda o brandbook e o teste no mesmo commit; os esqueletos de `site/brandbook/esqueletos/` e a
+home herdam os mesmos tokens.
+
+- **Cores:** ink `#1d1d1f`, azul `#2563eb` e `#1d4ed8`, surface `#f5f5f7`, mais os estados verde,
+  âmbar e perigo. Linha é `--hair` (preto a 8%) e `--hair-strong` (14%); tinta de estado a 8%.
+- **Raios:** `--r-xs` 6, `--r-sm` 10, `--r-md` 14, `--r-lg` 20, `--r-xl` 28 e a pílula `999px`
+  para botão e chip. Raio literal fora disso reprova no teste.
+- **Logo:** o PNG do site, por URL (`https://dent2dent.com.br/logo.png`), nunca copiado para cá.
+  Em texto, `Dent2Dent` em Inter 500, 22px, com o "2" em azul. Os esqueletos usam a forma em texto.
+- **Texto sobre tinta verde** vai em `--ink-2` e o verde só na borda: verde sobre a tinta dá 3,9
+  de contraste.
+- **Cópia fora daqui:** os dois esqueletos são recopiados para `plugins/dent2dent/shared/marca/`
+  do repositório de skills. Mudou um, recopie.
 
 ## Nunca travessão
 
 Travessão (U+2014) e traço (U+2013) são proibidos em qualquer texto daqui. O workflow reprova
-a home e o manifest que os tiverem.
+todo `site/**/*.html` e o manifest que os tiverem.

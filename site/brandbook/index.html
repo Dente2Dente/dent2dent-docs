@@ -11,21 +11,21 @@
 <style>
 :root{
   --ink:#1d1d1f;--ink-2:#424245;--azul:#2563eb;--azul-fundo:#1d4ed8;--surface:#f5f5f7;--muted:#6e6e73;
-  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--linha:#e5e5ea;--branco:#fff;
+  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--hair:rgba(0,0,0,.08);--hair-strong:rgba(0,0,0,.14);--branco:#fff;
   --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
-  --r-sm:6px;--r-md:10px;--r-lg:16px;
+  --r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:20px;--r-xl:28px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Inter",system-ui,sans-serif;color:var(--ink-2);background:var(--branco);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
 code,.mono{font-family:var(--mono)}
-code{font-size:.9em;background:var(--surface);border-radius:var(--r-sm);padding:1px 5px}
+code{font-size:.9em;background:var(--surface);border-radius:var(--r-xs);padding:1px 5px}
 a{color:var(--azul-fundo)}
 .topo{background:var(--ink);color:var(--branco)}
 .barra,.capa,.corpo,.rodape .in{max-width:960px;margin:0 auto}
 .barra{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.16)}
-.logo{font-size:22px;font-weight:800;letter-spacing:-.03em;color:var(--branco);text-decoration:none}
-.logo b{color:var(--azul);font-weight:800}
-.nav a{color:rgba(255,255,255,.8);font-size:14px;font-weight:600;text-decoration:none;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-sm)}
+.logo{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--branco);text-decoration:none}
+.logo b{color:var(--azul);font-weight:inherit}
+.nav a{color:rgba(255,255,255,.8);font-size:14px;font-weight:600;text-decoration:none;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px}
 .nav a:hover{background:var(--azul);border-color:var(--azul);color:var(--branco)}
 .capa{padding:36px 24px 36px}
 .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:12px;padding-left:12px;border-left:3px solid var(--azul)}
@@ -35,7 +35,7 @@ a{color:var(--azul-fundo)}
 .veredito{border-left:3px solid var(--azul);background:var(--surface);padding:16px 18px;margin-top:32px;border-radius:0 var(--r-md) var(--r-md) 0}
 .veredito .rot{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-fundo);margin-bottom:6px}
 section{margin-top:44px}
-.sec{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--linha);padding-bottom:10px;margin-bottom:18px}
+.sec{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:18px}
 .sec .n{font-family:var(--mono);color:var(--azul-fundo);font-size:15px;font-weight:600}
 .sec h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
 h3{font-size:16px;font-weight:700;margin:22px 0 8px;color:var(--ink)}
@@ -43,59 +43,60 @@ p{margin-bottom:12px}
 ul{margin:0 0 12px 22px}
 li{margin-bottom:4px}
 .par{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
-.painel{border-radius:var(--r-lg);padding:32px 24px;display:flex;align-items:center;justify-content:center;border:1px solid var(--linha)}
+.painel{border-radius:var(--r-lg);padding:32px 24px;display:flex;align-items:center;justify-content:center;border:1px solid var(--hair)}
 .painel.escuro{background:var(--ink);border-color:var(--ink)}
 .painel.claro{background:var(--branco)}
 .painel.surface{background:var(--surface)}
-.marca-g{font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--ink)}
-.marca-g b{color:var(--azul);font-weight:800}
+.marca-g{font-size:56px;font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink)}
+.marca-g b{color:var(--azul);font-weight:inherit}
+.painel img{height:28px;width:auto;max-width:none}
 .escuro .marca-g{color:var(--branco)}
 .respiro{position:relative;display:inline-block;padding:28px;border:1px dashed var(--azul);border-radius:var(--r-sm)}
 .respiro::after{content:"x = altura do D";position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--azul-fundo);white-space:nowrap}
 .nao{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0}
-.nao>div{border:1px solid var(--linha);border-radius:var(--r-lg);overflow:hidden}
+.nao>div{border:1px solid var(--hair);border-radius:var(--r-lg);overflow:hidden}
 .nao .vista{height:96px;display:flex;align-items:center;justify-content:center;background:var(--surface)}
 .nao .vista .marca-g{font-size:36px}
-.nao .txt{padding:10px 14px;font-size:13px;border-top:1px solid var(--linha)}
+.nao .txt{padding:10px 14px;font-size:13px;border-top:1px solid var(--hair)}
 .nao .txt b{display:block;color:var(--perigo);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
 table{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:14px}
-th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--linha);padding:8px 10px}
-td{border-bottom:1px solid var(--linha);padding:9px 10px;vertical-align:middle}
+th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--hair-strong);padding:8px 10px}
+td{border-bottom:1px solid var(--hair);padding:9px 10px;vertical-align:middle}
 td.num,th.num{text-align:right;font-family:var(--mono)}
-.amostra{display:inline-block;width:40px;height:28px;border-radius:var(--r-sm);border:1px solid var(--linha);vertical-align:middle}
+.amostra{display:inline-block;width:40px;height:28px;border-radius:var(--r-sm);border:1px solid var(--hair);vertical-align:middle}
 .hex{font-family:var(--mono);font-size:13px;color:var(--ink)}
 .tok{font-family:var(--mono);font-size:12px;color:var(--muted)}
-.func{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--linha);border-radius:4px;padding:1px 6px;margin-left:6px}
+.func{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--hair);border-radius:var(--r-xs);padding:1px 6px;margin-left:6px}
 .pesos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
-.pesos div{border:1px solid var(--linha);border-radius:var(--r-md);padding:12px 14px}
+.pesos div{border:1px solid var(--hair);border-radius:var(--r-md);padding:12px 14px}
 .pesos .a{font-size:24px;line-height:1.2;color:var(--ink)}
 .pesos .r{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
 .raios{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0}
-.raios div{width:120px;height:80px;background:var(--surface);border:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+.raios div{width:120px;height:80px;background:var(--surface);border:1px solid var(--hair);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
 .escala{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin:12px 0}
 .escala div{text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
-.escala i{display:block;background:var(--azul);border-radius:2px;margin:0 auto 6px;width:24px}
-.mini{border:1px solid var(--linha);border-radius:var(--r-lg);overflow:hidden;margin:14px 0}
+.escala i{display:block;background:var(--azul);border-radius:0;margin:0 auto 6px;width:24px}
+.mini{border:1px solid var(--hair);border-radius:var(--r-lg);overflow:hidden;margin:14px 0}
 .mini .m-faixa{height:5px;background:var(--azul)}
 .mini .m-capa{background:var(--ink);color:var(--branco);padding:22px 24px}
 .mini .m-capa .eyebrow{margin-bottom:10px}
 .mini .m-capa h4{font-size:22px;font-weight:800;letter-spacing:-.02em}
 .mini .m-corpo{padding:18px 24px}
-.mini .m-sec{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--linha);padding:14px 0 8px;margin-bottom:12px}
+.mini .m-sec{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--hair);padding:14px 0 8px;margin-bottom:12px}
 .mini .m-sec .n{font-family:var(--mono);font-weight:600;color:var(--azul-fundo)}
 .mini .m-sec h5{font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
 .mini .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
-.mini .kpi{border:1px solid var(--linha);border-radius:var(--r-lg);padding:12px;background:var(--surface)}
+.mini .kpi{border:1px solid var(--hair);border-radius:var(--r-lg);padding:12px;background:var(--surface)}
 .mini .kpi .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--azul-fundo)}
 .mini .kpi .t{font-weight:700;font-size:13px;color:var(--ink)}
-.mini .m-rodape{border-top:1px solid var(--linha);padding:14px 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
-.mini .m-rodape .marca{font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
-.mini .m-rodape .marca b{color:var(--azul);font-weight:800}
+.mini .m-rodape{border-top:1px solid var(--hair);padding:14px 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.mini .m-rodape .marca{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--ink)}
+.mini .m-rodape .marca b{color:var(--azul);font-weight:inherit}
 .mini .m-rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
-.rodape{border-top:1px solid var(--linha);padding:18px 24px}
+.rodape{border-top:1px solid var(--hair);padding:18px 24px}
 .rodape .in{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.rodape .marca{font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
-.rodape .marca b{color:var(--azul);font-weight:800}
+.rodape .marca{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--ink)}
+.rodape .marca b{color:var(--azul);font-weight:inherit}
 .rodape .doc{font-size:14px;font-weight:600;margin-top:3px}
 .rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
 @media (max-width:600px){.par{grid-template-columns:1fr}.capa h1{font-size:25px}.sec h2{font-size:19px}}
@@ -104,7 +105,7 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
 <body>
 <div class="topo">
   <div class="barra">
-    <a class="logo" href="../">D<b>2</b>D</a>
+    <a class="logo" href="../" aria-label="Dent2Dent Docs">Dent<b>2</b>Dent</a>
     <nav class="nav"><a href="../">Voltar aos documentos</a></nav>
   </div>
   <header class="capa">
@@ -117,26 +118,29 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
 <main class="corpo">
   <div class="veredito">
     <div class="rot">Em duas linhas</div>
-    <p>Neutro, técnico e claro: texto em grafite sobre branco, um único azul de marca e Inter. Tudo aqui vem do site dent2dent.com.br, nada foi acrescentado.</p>
+    <p>Neutro, técnico e claro: texto em grafite sobre branco, um único azul de marca e Inter. Paleta, fonte, raios e linha são os do site dent2dent.com.br; só a capa grafite dos documentos e o branco translúcido sobre ela são deles.</p>
   </div>
 
   <section>
     <div class="sec"><span class="n">01</span><h2>Logo</h2></div>
-    <p>O logo é tipográfico: <code>D&lt;b&gt;2&lt;/b&gt;D</code> em Inter 800, espaçamento <code>-0.03em</code>, com o "2" em azul <code>#2563eb</code>. Não existe arquivo de imagem: o logo se escreve, não se baixa.</p>
+    <p>O logo é o PNG que o site serve em <code>dent2dent.com.br/logo.png</code> (473 por 81, "D2D | Dent2Dent"), a 28px de altura no cabeçalho. Ele é referenciado por URL e não é copiado para este repositório.</p>
+    <div class="painel claro"><img src="https://dent2dent.com.br/logo.png" alt="Dent2Dent"></div>
+    <h3>Forma em texto</h3>
+    <p>Onde o PNG não cabe (fundo escuro, rodapé de documento, PDF), o rodapé do site escreve <code>Dent&lt;span&gt;2&lt;/span&gt;Dent</code> em Inter 500, 22px, espaçamento <code>-0.025em</code>, com o "2" em azul <code>#2563eb</code>.</p>
     <div class="par">
-      <div class="painel escuro"><div class="marca-g">D<b>2</b>D</div></div>
-      <div class="painel claro"><div class="marca-g">D<b>2</b>D</div></div>
+      <div class="painel escuro"><div class="marca-g">Dent<b>2</b>Dent</div></div>
+      <div class="painel claro"><div class="marca-g">Dent<b>2</b>Dent</div></div>
     </div>
-    <p>No fundo escuro as letras são brancas; no fundo claro, grafite <code>#1d1d1f</code>. O "2" é azul nos dois. O azul sobre o grafite tem contraste 3,3 para 1, suficiente para o logo (texto grande), insuficiente para texto pequeno.</p>
+    <p>No fundo escuro as letras são brancas; no fundo claro, grafite <code>#1d1d1f</code>. O "2" é azul nos dois. O azul sobre o grafite tem contraste 3,3 para 1: logotipo é isento da regra de contraste, mas texto corrido nunca vai em azul sobre grafite.</p>
     <h3>Área de respiro</h3>
-    <p>Livre ao redor, no mínimo a altura da letra D. Em cabeçalho, o logo aparece a 22px; em rodapé de documento, a 20px.</p>
-    <div class="painel surface"><div class="respiro"><div class="marca-g">D<b>2</b>D</div></div></div>
+    <p>Livre ao redor, no mínimo a altura da letra D. No cabeçalho do site o PNG tem 28px de altura; a forma em texto, no rodapé do site e dos documentos, tem 22px.</p>
+    <div class="painel surface"><div class="respiro"><div class="marca-g">Dent<b>2</b>Dent</div></div></div>
     <h3>O que não fazer</h3>
     <div class="nao">
-      <div><div class="vista"><div class="marca-g">D2D</div></div><div class="txt"><b>Sem destaque</b>O "2" sempre em azul.</div></div>
-      <div><div class="vista"><div class="marca-g">D<b style="color:var(--ambar)">2</b>D</div></div><div class="txt"><b>Outra cor no 2</b>Âmbar, verde e vermelho são de estado, não de marca.</div></div>
-      <div><div class="vista"><div class="marca-g" style="transform:scaleX(1.5)">D<b>2</b>D</div></div><div class="txt"><b>Esticar</b>Nada de deformar ou trocar a fonte.</div></div>
-      <div><div class="vista" style="background:var(--azul-fundo)"><div class="marca-g" style="color:var(--branco)">D<b>2</b>D</div></div><div class="txt"><b>Sobre o azul</b>O "2" azul some no fundo azul.</div></div>
+      <div><div class="vista"><div class="marca-g">Dent2Dent</div></div><div class="txt"><b>Sem destaque</b>O "2" sempre em azul.</div></div>
+      <div><div class="vista"><div class="marca-g">Dent<b style="color:var(--ambar)">2</b>Dent</div></div><div class="txt"><b>Outra cor no 2</b>Âmbar, verde e vermelho são de estado, não de marca.</div></div>
+      <div><div class="vista"><div class="marca-g" style="transform:scaleX(1.5)">Dent<b>2</b>Dent</div></div><div class="txt"><b>Esticar</b>Nada de deformar, trocar a fonte ou engrossar para 800.</div></div>
+      <div><div class="vista" style="background:var(--azul-fundo)"><div class="marca-g" style="color:var(--branco)">Dent<b>2</b>Dent</div></div><div class="txt"><b>Sobre o azul</b>O "2" azul some no fundo azul.</div></div>
     </div>
   </section>
 
@@ -152,7 +156,8 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
         <tr><td><span class="amostra" style="background:var(--azul-fundo)"></span></td><td class="tok">--azul-fundo</td><td class="hex">#1d4ed8</td><td>Azul para texto, link e número</td><td class="num">6,7</td></tr>
         <tr><td><span class="amostra" style="background:var(--surface)"></span></td><td class="tok">--surface</td><td class="hex">#f5f5f7</td><td>Fundo de card, veredito e código</td><td class="num">1,1</td></tr>
         <tr><td><span class="amostra" style="background:var(--muted)"></span></td><td class="tok">--muted</td><td class="hex">#6e6e73</td><td>Texto secundário, rótulo, legenda</td><td class="num">5,1</td></tr>
-        <tr><td><span class="amostra" style="background:var(--linha)"></span></td><td class="tok">--linha</td><td class="hex">#e5e5ea</td><td>Borda e divisória neutra, a mesma da home. Não é cor do site: é a linha que a home usa entre os blocos</td><td class="num">1,3</td></tr>
+        <tr><td><span class="amostra" style="background:var(--hair)"></span></td><td class="tok">--hair</td><td class="hex">rgba(0,0,0,.08)</td><td>Borda e divisória neutra, preto a 8%, a do site</td><td class="num">1,2</td></tr>
+        <tr><td><span class="amostra" style="background:var(--hair-strong)"></span></td><td class="tok">--hair-strong</td><td class="hex">rgba(0,0,0,.14)</td><td>Borda de campo, cabeçalho de tabela e contorno tracejado, preto a 14%, a do site</td><td class="num">1,4</td></tr>
         <tr><td><span class="amostra" style="background:var(--verde)"></span></td><td class="tok">--verde</td><td class="hex">#1f8a5b</td><td>Estado: deu certo, novo<span class="func">funcional</span></td><td class="num">4,3</td></tr>
         <tr><td><span class="amostra" style="background:var(--ambar)"></span></td><td class="tok">--ambar</td><td class="hex">#b45309</td><td>Estado: atenção<span class="func">funcional</span></td><td class="num">5,0</td></tr>
         <tr><td><span class="amostra" style="background:var(--perigo)"></span></td><td class="tok">--perigo</td><td class="hex">#b91c1c</td><td>Estado: erro, risco<span class="func">funcional</span></td><td class="num">6,5</td></tr>
@@ -161,7 +166,7 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
     <ul>
       <li>Texto pequeno em azul usa <code>--azul-fundo</code> (6,7), não <code>--azul</code> (5,2).</li>
       <li>Verde fica em 4,3: use em texto grande, em negrito ou junto de um ícone ou borda, nunca sozinho em corpo pequeno.</li>
-      <li>Fundo tingido de estado (como a caixa "Deu certo quando") é a cor do estado a 9% de opacidade, sem hex novo.</li>
+      <li>Fundo tingido de estado (como a caixa "Deu certo quando") é a cor do estado a 8%, como o <code>--green-tint</code> do site. Texto sobre a tinta vai em <code>--ink-2</code> e o verde fica só na borda: verde sobre a própria tinta dá 3,9 e reprova.</li>
       <li>Sobre o grafite, o branco aparece a 72% a 78% de opacidade para texto de apoio.</li>
     </ul>
   </section>
@@ -171,10 +176,10 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
     <p><b>Inter</b>, pelo Google Fonts, com <code>system-ui</code> de reserva. <b>Mono do sistema</b> (<code>ui-monospace, SFMono-Regular, Menlo</code>) para número, id, rótulo técnico e código.</p>
     <div class="pesos">
       <div><div class="a" style="font-weight:400">Aa</div><div class="r">400 · texto corrido</div></div>
-      <div><div class="a" style="font-weight:500">Aa</div><div class="r">500 · ênfase leve</div></div>
+      <div><div class="a" style="font-weight:500">Aa</div><div class="r">500 · ênfase leve, logo</div></div>
       <div><div class="a" style="font-weight:600">Aa</div><div class="r">600 · valor, botão</div></div>
       <div><div class="a" style="font-weight:700">Aa</div><div class="r">700 · rótulo, h3</div></div>
-      <div><div class="a" style="font-weight:800">Aa</div><div class="r">800 · título, logo</div></div>
+      <div><div class="a" style="font-weight:800">Aa</div><div class="r">800 · título</div></div>
     </div>
     <table>
       <thead><tr><th>Uso</th><th>Tamanho</th><th>Peso</th><th>Ajuste</th></tr></thead>
@@ -191,20 +196,23 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
 
   <section>
     <div class="sec"><span class="n">04</span><h2>Raio e espaçamento</h2></div>
-    <p>Três raios: 6px para campo e etiqueta, 10px para bloco interno, 16px para card.</p>
+    <p>Cinco raios e a pílula, com os nomes e valores do site: 6px para etiqueta e código, 10px para campo e bloco pequeno, 14px para bloco interno, 20px para card, 28px para painel grande, <code>999px</code> para botão, chip e avatar.</p>
     <div class="raios">
-      <div style="border-radius:var(--r-sm)">--r-sm<br>6px</div>
-      <div style="border-radius:var(--r-md)">--r-md<br>10px</div>
-      <div style="border-radius:var(--r-lg)">--r-lg<br>16px</div>
+      <div style="border-radius:var(--r-xs)">--r-xs<br>6px</div>
+      <div style="border-radius:var(--r-sm)">--r-sm<br>10px</div>
+      <div style="border-radius:var(--r-md)">--r-md<br>14px</div>
+      <div style="border-radius:var(--r-lg)">--r-lg<br>20px</div>
+      <div style="border-radius:var(--r-xl)">--r-xl<br>28px</div>
+      <div style="border-radius:999px">pílula<br>999px</div>
     </div>
-    <p>O espaçamento dos documentos anda em passos de 4px. Os que o esqueleto usa:</p>
+    <p>O espaçamento não segue uma grade: os esqueletos usam valores de 1 a 64px, escolhidos por bloco. Os que mais se repetem, do menor para o maior:</p>
     <div class="escala">
       <div><i style="height:8px"></i>8</div>
       <div><i style="height:12px"></i>12</div>
+      <div><i style="height:14px"></i>14</div>
       <div><i style="height:16px"></i>16</div>
+      <div><i style="height:18px"></i>18</div>
       <div><i style="height:24px"></i>24</div>
-      <div><i style="height:32px"></i>32</div>
-      <div><i style="height:44px"></i>44</div>
     </div>
     <p>Largura de leitura: 880px em spec, 820px em roteiro, 960px na home. Faixa do topo: 5px em azul.</p>
   </section>
@@ -230,21 +238,21 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
           <tbody><tr><td>Linha da tabela</td><td class="num">4</td></tr><tr><td>Outra linha</td><td class="num">6</td></tr></tbody>
         </table>
       </div>
-      <div class="m-rodape"><div class="marca">D<b>2</b>D</div><div class="ref">Epic #00 · 2026-01-01</div></div>
+      <div class="m-rodape"><div class="marca">Dent<b>2</b>Dent</div><div class="ref">Epic #00 · 2026-01-01</div></div>
     </div>
     <ul>
       <li><b>Capa:</b> fundo <code>--ink</code>, eyebrow com barra azul, título em branco, metadados em mono.</li>
       <li><b>Veredito:</b> logo abaixo da capa, até 3 linhas, borda esquerda azul de 3px.</li>
-      <li><b>Seção:</b> número em mono <code>--azul-fundo</code>, título ao lado, borda inferior <code>--linha</code>.</li>
+      <li><b>Seção:</b> número em mono <code>--azul-fundo</code>, título ao lado, borda inferior <code>--hair</code>.</li>
       <li><b>Kpi:</b> só quando há número que sustente o argumento; valor em mono.</li>
-      <li><b>Rodapé:</b> logo <code>D2D</code> a 20px, nome do documento, referência em mono.</li>
+      <li><b>Rodapé:</b> <code>Dent2Dent</code> em texto a 22px, peso 500, nome do documento, referência em mono.</li>
     </ul>
     <p>Os moldes completos, com os campos <code>{{...}}</code> que as skills preenchem, estão nos esqueletos: <a href="esqueletos/spec-esqueleto.html">spec</a> e <a href="esqueletos/roteiro-esqueleto.html">roteiro de homologação</a>.</p>
   </section>
 </main>
 
 <footer class="rodape"><div class="in">
-  <div><div class="marca">D<b>2</b>D</div><div class="doc">Brandbook</div></div>
+  <div><div class="marca">Dent<b>2</b>Dent</div><div class="doc">Brandbook</div></div>
   <div class="ref">dent2dent.com.br · base: tokens do site no ar</div>
 </div></footer>
 </body>
