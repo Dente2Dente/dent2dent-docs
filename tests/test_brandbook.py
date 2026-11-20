@@ -108,6 +108,10 @@ class TokensDoSiteTest(unittest.TestCase):
         self.assertIn("border:1px solid var(--verde)", novo)
 
 
+# A bolinha da legenda do guia tem de ser a mesma cor da marcação que o prints.mjs desenha no print.
+HEX_FUNCIONAIS = {"#f28c18"}
+
+
 class BrandbookTest(unittest.TestCase):
     def test_brandbook_existe(self):
         self.assertTrue((BRANDBOOK / "index.html").is_file())
@@ -119,10 +123,10 @@ class BrandbookTest(unittest.TestCase):
             self.assertNotIn("–", txt, p.name)
 
     def test_so_hex_da_marca(self):
-        permitidos = HEX_D6 | HEX_NEUTROS
+        permitidos = HEX_D6 | HEX_NEUTROS | HEX_FUNCIONAIS
         for p in paginas():
             txt = p.read_text(encoding="utf-8")
-            achados = {h.lower() for h in re.findall(r"#[0-9a-fA-F]{8}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b", txt)}
+            achados = {h.lower() for h in re.findall(r'(?<!href=")(?:#[0-9a-fA-F]{8}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b)', txt)}
             self.assertEqual(achados - permitidos, set(), p.name)
 
     def test_tokens_da_marca_presentes_no_brandbook(self):
@@ -181,12 +185,15 @@ class HomeTest(unittest.TestCase):
             self.assertTrue((alvo / "index.html" if href.endswith("/") else alvo).is_file(), href)
 
 
+ESQUELETOS_DA_MARCA = ("spec-esqueleto.html", "roteiro-esqueleto.html", "guia-esqueleto.html")
+
+
 class EsqueletosTest(unittest.TestCase):
     def ler(self, nome):
         return (BRANDBOOK / "esqueletos" / nome).read_text(encoding="utf-8")
 
-    def test_os_dois_esqueletos_existem(self):
-        for nome in ("spec-esqueleto.html", "roteiro-esqueleto.html"):
+    def test_os_tres_esqueletos_existem(self):
+        for nome in ESQUELETOS_DA_MARCA:
             self.assertTrue((BRANDBOOK / "esqueletos" / nome).is_file(), nome)
 
     def test_campos_de_conteudo_preservados(self):
@@ -201,11 +208,11 @@ class EsqueletosTest(unittest.TestCase):
             self.assertIn("{{" + campo + "}}", roteiro, campo)
 
     def test_rodape_com_a_marca_em_texto_do_site(self):
-        for nome in ("spec-esqueleto.html", "roteiro-esqueleto.html"):
+        for nome in ESQUELETOS_DA_MARCA:
             self.assertTrue('<div class="marca">Dent<b>2</b>Dent</div>' in self.ler(nome), nome)
 
     def test_faixa_do_topo_e_azul_liso(self):
-        for nome in ("spec-esqueleto.html", "roteiro-esqueleto.html"):
+        for nome in ESQUELETOS_DA_MARCA:
             self.assertIn(".faixa{height:5px;background:var(--azul)}", self.ler(nome), nome)
             self.assertNotIn("gradient", self.ler(nome), nome)
 
