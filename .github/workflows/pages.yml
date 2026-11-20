@@ -1,0 +1,44 @@
+name: Publicar no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Conferir travessão
+        run: |
+          if LC_ALL=C.UTF-8 grep -rlP '\x{2014}|\x{2013}' --include='*.html' --include='manifest.js' site; then
+            echo "::error::travessão ou traço em site/**/*.html ou site/manifest.js"
+            exit 1
+          fi
+
+      - name: Rodar os testes
+        run: python3 -m unittest discover -s tests
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

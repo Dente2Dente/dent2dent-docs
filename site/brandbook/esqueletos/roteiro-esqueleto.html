@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>{{TITULO}} · Roteiro de homologação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1d1f;--ink-2:#424245;--azul:#2563eb;--azul-fundo:#1d4ed8;--surface:#f5f5f7;--muted:#6e6e73;
+  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--hair:rgba(0,0,0,.08);--hair-strong:rgba(0,0,0,.14);--branco:#fff;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:20px;--r-xl:28px;
+  --verde-tint:rgba(31,138,91,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:"Inter",system-ui,sans-serif;color:var(--ink-2);background:var(--branco);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.faixa{height:5px;background:var(--azul)}
+.capa{background:var(--ink);color:var(--branco);padding:48px 24px 40px}
+.capa .in,.corpo,.rodape .in{max-width:820px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:14px;padding-left:12px;border-left:3px solid var(--azul)}
+.capa h1{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.capa .lead{color:rgba(255,255,255,.78);font-size:16px;margin-top:12px;max-width:640px}
+.corpo{padding:8px 24px 56px}
+.aceite{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.aceite>div{border:1px solid var(--hair);border-radius:var(--r-lg);padding:14px 16px}
+.aceite .rot{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.aceite .linha{border-bottom:1px solid var(--muted);height:30px}
+.como{background:var(--surface);border-left:3px solid var(--azul);padding:14px 18px;margin-top:24px;border-radius:0 var(--r-md) var(--r-md) 0}
+.como p+p{margin-top:6px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin:40px 0 4px}
+.objetivo{color:var(--muted);margin-bottom:16px}
+.caso{border:1px solid var(--hair);border-radius:var(--r-lg);padding:18px 20px;margin:14px 0;break-inside:avoid}
+.caso h3{font-size:16px;font-weight:700;color:var(--ink);display:flex;gap:10px;align-items:baseline}
+.caso h3 .n{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--azul-fundo)}
+.caso ol{margin:12px 0 0 22px}
+.caso li{margin-bottom:6px}
+.certo{background:var(--verde-tint);border-left:3px solid var(--verde);border-radius:0 var(--r-md) var(--r-md) 0;padding:10px 14px;margin-top:14px}
+.certo b{color:var(--ink-2);font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:2px}
+.marcar{display:flex;gap:22px;margin-top:12px;font-size:13px;color:var(--muted)}
+.marcar span::before{content:"";display:inline-block;width:12px;height:12px;border:1.5px solid var(--muted);border-radius:var(--r-xs);margin-right:6px;vertical-align:-2px}
+.rodape{border-top:1px solid var(--hair);padding:18px 24px}
+.rodape .in{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.rodape .marca{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--ink)}
+.rodape .marca b{color:var(--azul);font-weight:inherit}
+.rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
+@page{margin:12mm}
+@media print{body{font-size:12px}.capa{padding:24px 20px}h2{break-after:avoid}}
+@media (max-width:600px){.capa h1{font-size:25px}.aceite{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="faixa"></div>
+<header class="capa"><div class="in">
+  <div class="eyebrow">Roteiro de homologação · {{PRODUTO}}</div>
+  <h1>{{TITULO}}</h1>
+  <p class="lead">{{O_QUE_ESTA_SENDO_HOMOLOGADO}}</p>
+</div></header>
+
+<main class="corpo">
+  <div class="como">
+    <p><strong>Como usar:</strong> siga cada caso na ordem, na tela, e marque o resultado.</p>
+    <p>{{ONDE_ACESSAR_E_COM_QUAL_USUARIO}}</p>
+  </div>
+
+  <div class="aceite">
+    <div><div class="rot">Aprovado por</div><div class="linha"></div></div>
+    <div><div class="rot">Data</div><div class="linha"></div></div>
+  </div>
+
+  <h2>{{FEATURE}}</h2>
+  <p class="objetivo">{{OBJETIVO_EM_LINGUAGEM_DE_NEGOCIO}}</p>
+
+  <div class="caso">
+    <h3><span class="n">1.1</span>{{NOME_DO_CASO}}</h3>
+    <ol>
+      <li>{{PASSO}}</li>
+    </ol>
+    <div class="certo"><b>Deu certo quando</b>{{CRITERIO_OBSERVAVEL}}</div>
+    <div class="marcar"><span>Aprovado</span><span>Com ajuste</span><span>Reprovado</span></div>
+  </div>
+</main>
+
+<footer class="rodape"><div class="in">
+  <div class="marca">Dent<b>2</b>Dent</div>
+  <div class="ref">{{TITULO}} · Epic #{{NUMERO}} · {{DATA}}</div>
+</div></footer>
+</body>
+</html>
