@@ -1,6 +1,7 @@
 import contextlib
 import io
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -77,6 +78,27 @@ class PublicarTest(unittest.TestCase):
         self.rodar("--projeto", "app", "--slug", "agenda", "--titulo", "Agenda", "--prototipo", str(self.proto))
         html = (self.site / "app" / "agenda" / "prototipo.html").read_text(encoding="utf-8")
         self.assertEqual(html.count('name="robots"'), 1)
+
+    def publicar_proto(self, html):
+        self.proto.write_text(html, encoding="utf-8")
+        self.rodar("--projeto", "app", "--slug", "agenda", "--titulo", "Agenda", "--prototipo", str(self.proto))
+        return (self.site / "app" / "agenda" / "prototipo.html").read_text(encoding="utf-8")
+
+    def test_robots_index_existente_vira_noindex(self):
+        html = self.publicar_proto(PROTO_COM_ROBOTS)
+        self.assertEqual(re.findall(r"<meta[^>]*name=.robots.[^>]*>", html), ['<meta name="robots" content="noindex">'])
+
+    def test_robots_sem_valor_noindex_ganha_noindex_e_preserva_nofollow(self):
+        html = self.publicar_proto('<html><head><meta content="index, nofollow" name="robots"></head></html>')
+        self.assertEqual(re.findall(r"<meta[^>]*name=.robots.[^>]*>", html), ['<meta content="noindex, nofollow" name="robots">'])
+
+    def test_robots_sem_content_ganha_noindex(self):
+        html = self.publicar_proto('<html><head><meta name="robots"></head></html>')
+        self.assertEqual(re.findall(r"<meta[^>]*name=.robots.[^>]*>", html), ['<meta name="robots" content="noindex">'])
+
+    def test_robots_ja_noindex_fica_igual(self):
+        html = self.publicar_proto('<html><head><meta name="robots" content="noindex, nofollow"></head></html>')
+        self.assertIn('content="noindex, nofollow"', html)
 
     def test_reescreve_link_do_prototipo_datado(self):
         self.rodar("--projeto", "app", "--slug", "agenda", "--titulo", "Agenda", "--spec", str(self.spec))

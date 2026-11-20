@@ -26,7 +26,8 @@ URL_BASE = "https://dente2dente.github.io/dent2dent-docs"
 CABECALHO = "// Fonte única do que a home lista. Quem escreve é o scripts/publicar.py.\n"
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 LINK_PROTOTIPO = re.compile(r'(href=")(?:\./)?\d{4}-\d{2}-\d{2}-[a-z0-9-]+-prototipo\.html')
-META_ROBOTS = re.compile(r'<meta\s+name=["\']robots["\']', re.IGNORECASE)
+META_ROBOTS = re.compile(r'<meta\b(?=[^>]*\bname=["\']robots["\'])[^>]*>', re.IGNORECASE)
+CONTENT = re.compile(r'(\bcontent=)(["\'])(.*?)\2', re.IGNORECASE | re.DOTALL)
 ABRE_HEAD = re.compile(r"<head[^>]*>", re.IGNORECASE)
 ABRE_HTML = re.compile(r"<html[^>]*>", re.IGNORECASE)
 NOINDEX = '<meta name="robots" content="noindex">'
@@ -47,9 +48,20 @@ def gravar_manifest(dados):
     MANIFEST.write_text(CABECALHO + "window.DOCS_MANIFEST = " + corpo + ";\n", encoding="utf-8")
 
 
+def forcar_noindex(meta):
+    def trocar(m):
+        valores = [v.strip() for v in m.group(3).split(",") if v.strip()]
+        valores = [v for v in valores if v.lower() not in {"index", "all", "noindex"}]
+        return f'{m.group(1)}{m.group(2)}{", ".join(["noindex", *valores])}{m.group(2)}'
+
+    if CONTENT.search(meta):
+        return CONTENT.sub(trocar, meta, count=1)
+    return meta.rstrip(">").rstrip("/").rstrip() + ' content="noindex">'
+
+
 def garantir_noindex(texto):
     if META_ROBOTS.search(texto):
-        return texto
+        return META_ROBOTS.sub(lambda m: forcar_noindex(m.group(0)), texto)
     for abertura in (ABRE_HEAD, ABRE_HTML):
         achado = abertura.search(texto)
         if achado:
