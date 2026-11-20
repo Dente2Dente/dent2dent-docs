@@ -14,8 +14,16 @@ LINHA = "#e5e5ea"
 PROIBIDOS = ("montserrat", "hyperiontech", "hyperion")
 
 
+HOME = RAIZ / "site" / "index.html"
+RAIOS_PERMITIDOS = {"var(--r-sm)", "var(--r-md)", "var(--r-lg)", "0", "50%"}
+
+
 def paginas():
     return sorted(BRANDBOOK.rglob("*.html"))
+
+
+def hexes(txt):
+    return {h.lower() for h in re.findall(r"#[0-9a-fA-F]{8}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b", txt)}
 
 
 class BrandbookTest(unittest.TestCase):
@@ -65,6 +73,25 @@ class BrandbookTest(unittest.TestCase):
             if href.startswith("../"):
                 continue
             self.assertTrue((BRANDBOOK / href).exists(), href)
+
+
+class HomeTest(unittest.TestCase):
+    def test_so_hex_da_marca(self):
+        permitidos = HEX_D6 | HEX_NEUTROS | {LINHA}
+        self.assertEqual(hexes(HOME.read_text(encoding="utf-8")) - permitidos, set())
+
+    def test_so_raios_dos_tokens(self):
+        txt = HOME.read_text(encoding="utf-8")
+        usados = {r.strip() for r in re.findall(r"border-radius:([^;}]+)", txt)}
+        self.assertEqual(usados - RAIOS_PERMITIDOS, set())
+
+    def test_link_do_brandbook_resolve(self):
+        txt = HOME.read_text(encoding="utf-8")
+        hrefs = set(re.findall(r'href="(brandbook/[^"]*)"', txt))
+        self.assertTrue(hrefs)
+        for href in hrefs:
+            alvo = HOME.parent / href
+            self.assertTrue((alvo / "index.html" if href.endswith("/") else alvo).is_file(), href)
 
 
 class EsqueletosTest(unittest.TestCase):

@@ -26,10 +26,13 @@ jobs:
 
       - name: Conferir travessão
         run: |
-          if grep -rlP '\x{2014}|\x{2013}' site/index.html site/manifest.js; then
-            echo "::error::travessão ou traço na home ou no manifest"
+          if LC_ALL=C.UTF-8 grep -rlP '\x{2014}|\x{2013}' --include='*.html' --include='manifest.js' site; then
+            echo "::error::travessão ou traço em site/**/*.html ou site/manifest.js"
             exit 1
           fi
+
+      - name: Rodar os testes
+        run: python3 -m unittest discover -s tests
 
       - uses: actions/configure-pages@v5
 
