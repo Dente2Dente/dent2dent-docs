@@ -98,7 +98,7 @@ pre code{background:none;padding:0}
   <p class="lead">O que cada skill faz, qual chamar em cada situação e como usar no repositório da Dent2Dent, com homologação na develop e produção na main.</p>
   <div class="capa-meta">
     <div><div class="rot">Para</div><div class="val">Diogo</div></div>
-    <div><div class="rot">Plugin</div><div class="val mono">dent2dent 0.5.0</div></div>
+    <div><div class="rot">Plugin</div><div class="val mono">dent2dent 0.7.0</div></div>
     <div><div class="rot">Marketplace</div><div class="val mono">Dente2Dente/dent2dent-skills</div></div>
     <div><div class="rot">Repositório</div><div class="val mono">Diogo-Salvio/dent2dent</div></div>
     <div><div class="rot">Data</div><div class="val mono">20/11/2026</div></div>
@@ -108,7 +108,7 @@ pre code{background:none;padding:0}
 <main class="corpo">
   <div class="veredito">
     <div class="rot">O que você precisa fazer</div>
-    <p>Instale o plugin, abra o Claude Code na pasta do <code>dent2dent</code> e comece toda mudança pequena com <code>/dent2dent:fase-dinamica</code>. Ele planeja, abre a issue, implementa com teste, passa por um auditor e só publica depois que você responder <b>"Mergeio?"</b>. No primeiro prompt, diga que a base é a <code>develop</code>.</p>
+    <p>Instale o plugin, abra o Claude Code na pasta do <code>dent2dent</code> e comece toda mudança pequena com <code>/dent2dent:fase-dinamica</code>. Ele planeja, abre a issue, implementa com teste, passa por um auditor e só publica depois que você responder <b>"Mergeio?"</b>. O PR vai para a <code>develop</code>; a <code>main</code> continua com você.</p>
   </div>
 
   <section>
@@ -131,7 +131,7 @@ gh auth setup-git</code></pre></li>
       <li>Dentro do Claude Code:
 <pre><code>/plugin marketplace add Dente2Dente/dent2dent-skills
 /plugin install dent2dent@dent2dent-skills</code></pre></li>
-      <li>Reinicie o Claude Code. Digite <code>/dent2dent:</code> e confira que aparecem as cinco skills.</li>
+      <li>Reinicie o Claude Code. Digite <code>/dent2dent:</code> e confira que aparecem as seis skills.</li>
     </ol>
     <p>Quando o Hugo publicar melhoria no núcleo, você atualiza com <code>/plugin marketplace update dent2dent-skills</code> e reinicia.</p>
   </section>
@@ -173,6 +173,7 @@ gh auth setup-git</code></pre></li>
       <tr><td><code>/dent2dent:fase1-planejar</code></td><td>Módulo novo, várias telas, mais de um assunto</td><td>Plano, árvore Epic, Feature, PBI e Task em issues, spec no site de docs</td></tr>
       <tr><td><code>/dent2dent:fase2-executar</code></td><td>Depois da fase1, num chat novo pelo botão que ela oferece</td><td>Uma Task por agente, auditor por PBI, PR por Feature, um "Mergeio?" no fim</td></tr>
       <tr><td><code>/dent2dent:fase3-polir</code></td><td>Depois da fase2, com você olhando a tela no localhost</td><td>Ajustes em lotes, regra nova gravada no repo, Epic fechado</td></tr>
+      <tr><td><code>/dent2dent:guia-usuario</code></td><td>Depois do polimento, quando alguém de fora vai usar a tela</td><td>PDF com print de cada tela, bolinhas numeradas e legenda</td></tr>
     </table>
     <p><b>Na dúvida, fase-dinamica.</b> Se o plano passar de 5 passos, ela mesma recomenda a fase1 e pergunta se segue.</p>
   </section>
@@ -197,7 +198,6 @@ gh auth setup-git</code></pre></li>
     </table>
     <h3>Frases que funcionam</h3>
 <pre><code>/dent2dent:fase-dinamica O filtro de recebimentos não respeita a data final.
-Base develop, PR para develop.
 
 /dent2dent:explorar Quero repensar como a esteira de recebimentos avisa o atraso.
 
@@ -206,10 +206,10 @@ Base develop, PR para develop.
 
   <section>
     <div class="sec"><span class="n">05</span><h2>No repositório da Dent2Dent</h2></div>
-    <p>Hoje o seu fluxo é <code>feat/*</code> para a <code>develop</code> (homologação, Vercel e migrations do Supabase de HML) e depois a <code>develop</code> para a <code>main</code> (produção, com as migrations de PROD rodando no push).</p>
+    <p>Hoje o seu fluxo é <code>feat/*</code> para a <code>develop</code> (homologação, Vercel e migrations do Supabase de HML) e depois a <code>develop</code> para a <code>main</code> (produção; as migrations de PROD rodam à mão, pelo workflow que pede "aplicar").</p>
     <div class="caixa">
-      <div class="rot">Atenção: base develop</div>
-      <p>As skills nasceram num projeto em que a <code>main</code> é o tronco. Sem aviso, elas abrem a branch da <code>main</code> e o PR para a <code>main</code>, o que pularia a homologação e rodaria migration direto em produção. Até o plugin aprender a ler o tronco do repo, escreva no primeiro prompt: <code>Base develop, PR para develop. Main só depois de homologar.</code></p>
+      <div class="rot">O plugin lê o tronco do repo</div>
+      <p>As skills perguntam ao GitHub qual é a branch padrão do repo, que aqui é a <code>develop</code>. A branch nasce dela e o PR volta para ela, então o merge cai em homologação. Se um dia a branch padrão mudar, o plugin acompanha sem você avisar.</p>
     </div>
     <div class="grade">
       <div class="caixa">
@@ -241,7 +241,7 @@ Base develop, PR para develop.
       <li><b>Pedir para "só fazer rapidinho".</b> O plano de um ajuste cabe em 5 linhas e é ele que o auditor usa. Sem plano, a auditoria vira opinião.</li>
       <li><b>Responder "sim" no "Mergeio?" sem abrir o PR.</b> O merge publica.</li>
       <li><b>Abrir chat novo e recolar contexto.</b> Não precisa: chame a mesma skill no chat novo e ela acha a issue pelo nome da branch.</li>
-      <li><b>Esquecer a base develop</b> no primeiro prompt (seção 05).</li>
+      <li><b>Mergear a <code>develop</code> na <code>main</code> antes de homologar.</b> A promoção continua com você (seção 05).</li>
       <li><b>Pôr dado real no site de docs.</b> Ele é público e não tem login.</li>
     </ul>
   </section>
@@ -254,6 +254,6 @@ Base develop, PR para develop.
 
 <footer class="rodape"><div class="in">
   <div><div class="marca">Dent<b>2</b>Dent</div><div class="doc">Guia de uso do plugin dent2dent</div></div>
-  <div class="ref">dent2dent 0.5.0 · 20/11/2026</div>
+  <div class="ref">dent2dent 0.7.0 · 20/11/2026</div>
 </div></footer>
 </body></html>
