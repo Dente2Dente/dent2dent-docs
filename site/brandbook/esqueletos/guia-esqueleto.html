@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>{{TITULO}} · Guia do usuário</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1d1f;--ink-2:#424245;--azul:#2563eb;--azul-fundo:#1d4ed8;--surface:#f5f5f7;--muted:#6e6e73;
+  --verde:#1f8a5b;--ambar:#b45309;--perigo:#b91c1c;--hair:rgba(0,0,0,.08);--hair-strong:rgba(0,0,0,.14);--branco:#fff;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --marcador:#f28c18;--r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:20px;--r-xl:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:"Inter",system-ui,sans-serif;color:var(--ink-2);background:var(--branco);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+code,.mono{font-family:var(--mono)}
+a{color:var(--azul-fundo)}
+.faixa{height:5px;background:var(--azul)}
+.capa{background:var(--ink);color:var(--branco);padding:56px 24px 44px}
+.capa .in,.corpo,.rodape .in{max-width:880px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:16px;padding-left:12px;border-left:3px solid var(--azul)}
+.capa h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.12}
+.capa .lead{color:rgba(255,255,255,.78);font-weight:400;font-size:17px;margin-top:14px;max-width:720px}
+.capa-meta{display:flex;flex-wrap:wrap;gap:16px 40px;margin-top:32px;border-top:1px solid rgba(255,255,255,.16);padding-top:18px}
+.capa-meta .rot{color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;margin-bottom:4px}
+.capa-meta .val{font-weight:600;font-size:14px}
+.capa-meta a{color:var(--branco)}
+.corpo{padding:8px 24px 64px}
+section{margin-top:44px}
+.sec{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:18px}
+.sec .n{font-family:var(--mono);color:var(--azul-fundo);font-size:15px;font-weight:600}
+.sec h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+h3{font-size:16px;font-weight:700;margin:22px 0 8px;color:var(--ink)}
+p{margin-bottom:12px}
+ul,ol{margin:0 0 12px 22px}
+li{margin-bottom:4px}
+.veredito{border-left:3px solid var(--azul);background:var(--surface);padding:16px 18px;margin-top:32px;border-radius:0 var(--r-md) var(--r-md) 0}
+.veredito .rot,.caixa .rot{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-fundo);margin-bottom:8px}
+.veredito p:last-child,.caixa p:last-child{margin-bottom:0}
+.caixa{border:1px solid var(--hair);border-radius:var(--r-lg);padding:16px 18px;margin:16px 0;background:var(--branco)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.kpi{border:1px solid var(--hair);border-radius:var(--r-lg);padding:14px;background:var(--surface)}
+.kpi .v{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--azul-fundo)}
+.kpi .t{font-weight:700;font-size:14px;margin:6px 0 4px;color:var(--ink)}
+.kpi .x{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:14px}
+th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--hair-strong);padding:8px 10px}
+td{border-bottom:1px solid var(--hair);padding:9px 10px;vertical-align:top}
+td.num,th.num{text-align:right;font-family:var(--mono)}
+td .id{font-family:var(--mono);color:var(--azul-fundo)}
+tr.feature td{background:var(--surface);font-weight:700}
+pre{font-family:var(--mono);font-size:13px;background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-md);padding:14px;overflow-x:auto;margin:12px 0 16px;line-height:1.5}
+code{font-size:.9em;background:var(--surface);border-radius:var(--r-xs);padding:1px 4px}
+pre code{background:none;padding:0}
+.fluxo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.fluxo .no{border:1px solid var(--hair);border-radius:var(--r-md);padding:8px 12px;background:var(--surface);font-size:13px;font-weight:600}
+.fluxo .seta{color:var(--muted);font-family:var(--mono)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:var(--r-xs);background:var(--hair);color:var(--ink-2)}
+.rodape{border-top:1px solid var(--hair);padding:18px 24px}
+.rodape .in{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.rodape .marca{font-size:22px;font-weight:500;letter-spacing:-.025em;color:var(--ink)}
+.rodape .marca b{color:var(--azul);font-weight:inherit}
+.rodape .doc{font-size:14px;font-weight:600;margin-top:3px;color:var(--ink-2)}
+.rodape .ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.sumario{columns:2;column-gap:32px;margin:12px 0 0}
+.sumario .sg{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-fundo);margin:12px 0 4px;break-after:avoid}
+.sumario a{display:flex;gap:10px;text-decoration:none;color:var(--ink);font-size:14px;padding:2px 0}
+.sumario a .sc{font-family:var(--mono);color:var(--azul-fundo);width:34px;flex-shrink:0}
+.passos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.passo{border:1px solid var(--hair);border-radius:var(--r-md);padding:12px;background:var(--surface)}
+.passo .pn{font-family:var(--mono);font-size:12px;color:var(--azul-fundo)}
+.passo .pt{font-weight:700;font-size:14px;margin:4px 0;color:var(--ink)}
+.passo .px{font-size:13px;color:var(--muted)}
+.parte{display:flex;gap:18px;align-items:center;background:var(--ink);color:var(--branco);padding:22px 24px;margin:48px 0 24px;border-radius:var(--r-md);break-before:page}
+.parte .pl{font-family:var(--mono);color:var(--azul);font-size:12px;letter-spacing:.2em;white-space:nowrap}
+.parte .pt{font-size:20px;font-weight:800}
+.parte .pd{opacity:.78;font-size:14px;margin-top:2px}
+.tela{margin:0 0 36px;break-inside:avoid}
+.tela-topo{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.tela-topo .cod{font-family:var(--mono);color:var(--azul-fundo);font-size:14px;font-weight:600}
+.tela-topo h3{margin:0;font-size:18px;font-weight:800}
+.tela-topo .quem{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--azul-fundo);background:var(--surface);border:1px solid var(--hair);border-radius:999px;padding:2px 10px}
+.tela .sub{color:var(--muted);margin:6px 0 10px}
+.shot{border:1px solid var(--hair);border-radius:var(--r-md);overflow:hidden}
+.shot img{display:block;width:100%}
+.legenda{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin:12px 0 0;padding:0;list-style:none;counter-reset:m}
+.legenda li{break-inside:avoid;position:relative;padding-left:28px;margin-bottom:8px;font-size:13px;color:var(--muted);counter-increment:m}
+.legenda li strong{color:var(--ink)}
+.legenda li::before{content:counter(m);position:absolute;left:0;top:1px;width:19px;height:19px;border-radius:999px;background:var(--marcador);color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.caso{border-left:3px solid var(--azul);padding:4px 0 4px 14px;margin-bottom:14px;break-inside:avoid}
+.caso .ct{font-weight:700;color:var(--ink)}
+.caso .cx{color:var(--muted);font-size:14px}
+@page{margin:12mm}
+@media print{
+  body{font-size:12px}
+  .capa{padding:28px 20px}
+  table,pre,.kpi,.caixa{break-inside:avoid}
+  h2,h3,.sec{break-after:avoid}
+}
+@media (max-width:600px){.capa h1{font-size:26px}.sec h2{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="faixa"></div>
+<header class="capa"><div class="in">
+  <div class="eyebrow">Guia do usuário · {{ASSUNTO}}</div>
+  <h1>{{TITULO}}</h1>
+  <p class="lead">{{LEAD}}</p>
+  <div class="capa-meta">
+    <div><div class="rot">Para quem</div><div class="val">{{PAPEIS}}</div></div>
+    <div><div class="rot">Telas</div><div class="val mono">{{N_TELAS}}</div></div>
+    <div><div class="rot">Entrega</div><div class="val mono">{{ANCORA}}</div></div>
+    <div><div class="rot">Data</div><div class="val mono">{{DATA}}</div></div>
+  </div>
+</div></header>
+
+<main class="corpo">
+  <div class="veredito">
+    <div class="rot">Em uma frase</div>
+    <p>{{FRASE}}</p>
+  </div>
+
+  <nav class="sumario">
+    <div class="sg">Parte A · {{NOME_PARTE_A}}</div>
+    <a href="#A01"><span class="sc">A01</span><span>{{TITULO_TELA}}</span></a>
+  </nav>
+
+  <section>
+    <div class="sec"><span class="n">01</span><h2>O caminho</h2></div>
+    <div class="passos"><div class="passo"><div class="pn">01</div><div class="pt">{{ETAPA}}</div><div class="px">{{ETAPA_TEXTO}}</div></div></div>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">02</span><h2>Quem é quem</h2></div>
+    <table><thead><tr><th>Papel</th><th>Vê</th><th>Faz</th></tr></thead><tbody>
+    <tr><td>{{PAPEL}}</td><td>{{PAPEL_VE}}</td><td>{{PAPEL_FAZ}}</td></tr>
+    </tbody></table>
+  </section>
+
+  <div class="parte"><span class="pl">PARTE A</span><div><div class="pt">{{NOME_PARTE_A}}</div><div class="pd">{{DESCRICAO_PARTE_A}}</div></div></div>
+
+  <div class="tela" id="A01">
+    <div class="tela-topo"><span class="cod">A01</span><h3>{{TITULO_TELA}}</h3><span class="quem">{{PAPEL_DA_TELA}}</span></div>
+    <p class="sub">{{FRASE_DA_TELA}}</p>
+    <div class="shot"><img src="prints/A01.jpg" alt="{{TITULO_TELA}}"></div>
+    <ol class="legenda"><li><strong>{{MARCA_1}}:</strong> {{MARCA_1_TEXTO}}</li></ol>
+  </div>
+
+  <div class="parte"><span class="pl">PARTE B</span><div><div class="pt">Configuração</div><div class="pd">{{DESCRICAO_PARTE_B}}</div></div></div>
+
+  <div class="tela" id="B01">
+    <div class="tela-topo"><span class="cod">B01</span><h3>{{TITULO_TELA_CONFIG}}</h3><span class="quem">{{PAPEL_DA_TELA_CONFIG}}</span></div>
+    <p class="sub">{{FRASE_DA_TELA_CONFIG}}</p>
+    <div class="shot"><img src="prints/B01.jpg" alt="{{TITULO_TELA_CONFIG}}"></div>
+    <ol class="legenda"><li><strong>{{MARCA_CONFIG_1}}:</strong> {{MARCA_CONFIG_1_TEXTO}}</li></ol>
+  </div>
+
+  <section>
+    <div class="sec"><span class="n">03</span><h2>Configura aqui, impacta ali</h2></div>
+    <table><thead><tr><th>O que muda</th><th>Onde</th><th>Efeito</th></tr></thead><tbody>
+    <tr><td>{{CONFIG}}</td><td>{{CONFIG_ONDE}}</td><td>{{CONFIG_EFEITO}}</td></tr>
+    </tbody></table>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">04</span><h2>Antes de usar</h2></div>
+    <ol><li><strong>{{PREPARO}}:</strong> {{PREPARO_TEXTO}}</li></ol>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">05</span><h2>Dúvidas que mais aparecem</h2></div>
+    <div class="caso"><div class="ct">{{DUVIDA}}</div><div class="cx">{{DUVIDA_RESPOSTA}}</div></div>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">06</span><h2>O que leva tempo para aparecer</h2></div>
+    <table><thead><tr><th>O que</th><th>Quando aparece</th></tr></thead><tbody>
+    <tr><td>{{ATRASO}}</td><td>{{ATRASO_QUANDO}}</td></tr>
+    </tbody></table>
+  </section>
+
+  <section>
+    <div class="sec"><span class="n">07</span><h2>O que está fora desta versão</h2></div>
+    <p>Não é defeito: fica para depois.</p>
+    <ul><li>{{FORA}}</li></ul>
+  </section>
+</main>
+
+<footer class="rodape"><div class="in">
+  <div><div class="marca">Dent<b>2</b>Dent</div><div class="doc">{{TITULO}} · Guia do usuário</div></div>
+  <div class="ref">{{ANCORA}} · {{DATA}}</div>
+</div></footer>
+</body>
+</html>

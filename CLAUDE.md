@@ -58,7 +58,7 @@ home herdam os mesmos tokens.
   Em texto, `Dent2Dent` em Inter 500, 22px, com o "2" em azul. Os esqueletos usam a forma em texto.
 - **Texto sobre tinta verde** vai em `--ink-2` e o verde só na borda: verde sobre a tinta dá 3,9
   de contraste.
-- **Cópia fora daqui:** os dois esqueletos são recopiados para `plugins/dent2dent/shared/marca/`
+- **Cópia fora daqui:** os três esqueletos (spec, roteiro e guia do usuário) são recopiados para `plugins/dent2dent/shared/marca/`
   do repositório de skills. Mudou um, recopie.
 
 ## Nunca travessão
